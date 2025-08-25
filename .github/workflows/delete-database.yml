@@ -16,7 +16,7 @@ jobs:
 
       - name: List files in terraform_demo
         run: ls -ltra
-        working-directory: db-terraform/terraform_demo
+        working-directory:  terraform_demo
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
