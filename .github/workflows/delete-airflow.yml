@@ -14,8 +14,8 @@ jobs:
           repository: mugidavaatseren/db-terraform
           ref: main
 
-      - name: Change directory to Terraform
-        run: cd terraform && ls -ltra
+      - name: Change directory to terraform_demo
+        run: cd terraform_demo && ls -ltra
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -30,13 +30,13 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: ap-southeast-2
 
       - name: Terraform Init
-        run: cd terraform && terraform init
+        run: cd terraform_demo && terraform init
 
       - name: Terraform Plan
-        run: cd terraform && terraform plan --var "create_database=true"  --var "create_airflow=false"
+        run: cd terraform_demo && terraform plan --var "create_database=true"  --var "create_airflow=false"
 
       - name: Terraform Apply
-        run: cd terraform && terraform apply --var "create_database=true"  --var "create_airflow=false" -auto-approve
+        run: cd terraform_demo && terraform apply --var "create_database=true"  --var "create_airflow=false" -auto-approve
