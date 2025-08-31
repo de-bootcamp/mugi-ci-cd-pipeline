@@ -7,10 +7,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      ECR_REPOSITORY: dbt
+      ECR_REPOSITORY: dbt_demo
       IMAGE_TAG: latest
       DOCKERFILE: ./docker/Dockerfile
-      CONTEXT: ./dbt
+      CONTEXT: ./dbt_demo
 
     steps:
       - name: Checkout Terraform repo
