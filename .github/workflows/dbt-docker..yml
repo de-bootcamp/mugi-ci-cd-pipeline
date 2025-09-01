@@ -7,9 +7,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      ECR_REPOSITORY: dbt_demo
+      ECR_REPOSITORY: dbt
       IMAGE_TAG: latest
-      DOCKERFILE: ./docker/dockerfile
+      DOCKERFILE: ./dbt_demo/docker/dockerfile
       CONTEXT: ./dbt_demo
 
     steps:
