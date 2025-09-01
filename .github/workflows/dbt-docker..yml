@@ -9,7 +9,7 @@ jobs:
     env:
       ECR_REPOSITORY: dbt
       IMAGE_TAG: latest
-      DOCKERFILE: ./dbt_demo/docker/dockerfile
+      DOCKERFILE: ./dbt_demo/docker/Dockerfile
       CONTEXT: ./dbt_demo
 
     steps:
