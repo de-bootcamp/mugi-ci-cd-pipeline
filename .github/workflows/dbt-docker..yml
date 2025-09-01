@@ -10,7 +10,7 @@ jobs:
       ECR_REPOSITORY: dbt_demo
       IMAGE_TAG: latest
       DOCKERFILE: ./docker/Dockerfile
-      CONTEXT: ./dbt_demo
+      CONTEXT: ./dbt
 
     steps:
       - name: Checkout Terraform repo
