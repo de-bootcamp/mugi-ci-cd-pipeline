@@ -1,0 +1,52 @@
+name: Airflow DAGs Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Terraform repo
+        uses: actions/checkout@v4
+        with:
+          repository: mugi davaatseren/db-terraform
+          ref: main
+
+      - name: Change directory to Terraform
+        run: cd terraform && ls -ltra
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.5
+
+      - name: Terraform Validate
+        run: terraform --version
+
+      - name: Setup AWS CLI
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Terraform Init
+        run: cd terraform_demo && terraform init
+
+      - name: Terraform Plan
+        env:
+          TF_VAR_ssh_private_key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          TF_VAR_create_database: true
+          TF_VAR_create_airflow: true
+          TF_VAR_deploy_dags: true
+        run: cd terraform_demo && terraform plan
+
+      - name: Terraform Apply
+        env:
+          TF_VAR_ssh_private_key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          TF_VAR_create_database: true
+          TF_VAR_create_airflow: true
+          TF_VAR_deploy_dags: true
+        run: cd terraform_demo && terraform apply -auto-approve
