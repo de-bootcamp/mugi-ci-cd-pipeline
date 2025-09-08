@@ -14,8 +14,8 @@ jobs:
           repository: mugi davaatseren/db-terraform
           ref: main
 
-      - name: Change directory to Terraform
-        run: cd terraform && ls -ltra
+      - name: Change directory to terraform_demo
+        run: cd terraform_demo && ls -ltra
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
