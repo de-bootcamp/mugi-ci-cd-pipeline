@@ -11,7 +11,7 @@ jobs:
       - name: Checkout Terraform repo
         uses: actions/checkout@v4
         with:
-          repository: mugi davaatseren/db-terraform
+          repository: mugidavaatseren/db-terraform
           ref: main
 
       - name: Change directory to terraform_demo
