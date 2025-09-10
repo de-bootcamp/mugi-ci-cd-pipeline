@@ -36,7 +36,17 @@ jobs:
         run: cd terraform_demo && terraform init
 
       - name: Terraform Plan
+        env:
+          TF_VAR_ssh_private_key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          TF_VAR_create_database: true
+          TF_VAR_create_airflow: false
+          TF_VAR_deploy_dags: false
         run: cd terraform_demo && terraform plan --var "create_database=true"  --var "create_airflow=false"
 
       - name: Terraform Apply
+        env:
+          TF_VAR_ssh_private_key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          TF_VAR_create_database: true
+          TF_VAR_create_airflow: false
+          TF_VAR_deploy_dags: false
         run: cd terraform_demo && terraform apply --var "create_database=true"  --var "create_airflow=false" -auto-approve
